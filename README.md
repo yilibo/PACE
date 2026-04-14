@@ -12,7 +12,6 @@ PACE is a video action recognition framework built around the **Process-Aligned 
 ```bash
 conda create -n pace python=3.10
 conda activate pace
-pip install -r requirements.txt
 ```
 
 ## Data
