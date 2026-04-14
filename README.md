@@ -12,6 +12,7 @@ PACE is a video action recognition framework built around the **Process-Aligned 
 ```bash
 conda create -n pace python=3.10
 conda activate pace
+pip install -r requirements.txt
 ```
 
 ## Data
@@ -33,22 +34,19 @@ Trajectory preprocessing under `point_tracking/` uses CoTracker query initializa
 
 ## Training
 
-Use the sample launcher:
-
-```bash
-bash scripts/pace.sh pace_ssv2_train
-```
-
-Or run manually:
+Official entrypoint:
 
 ```bash
 torchrun --nproc_per_node=$NUM_GPUS --master_port=$MASTER_PORT \
     tools/run_net.py --init_method env:// --new_dist_init \
     --cfg configs/pace/$CONFIG_TO_USE.yaml \
-    DATA.PATH_TO_DATA_DIR $DATA_DIR \
-    DATA.PATH_TO_PACE_PT_DATA $PACE_PT_DATA \
+    DATA.PATH_TO_DATA_DIR <PATH_TO_VIDEO_DATASET> \
+    DATA.PATH_TO_PACE_PT_DATA <PATH_TO_TRAJECTORY_METADATA> \
+    OUTPUT_DIR <PATH_TO_OUTPUT_DIR> \
+    NUM_GPUS $NUM_GPUS \
     MODEL.MODEL_NAME PACE \
     MODEL.METHOD.FREEZE_CLIP True \
     POINT_INFO.SAMPLING_TYPE hybrid_motion \
     POINT_INFO.NUM_POINTS_TO_SAMPLE 256
 ```
+
