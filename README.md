@@ -53,20 +53,3 @@ torchrun --nproc_per_node=$NUM_GPUS --master_port=$MASTER_PORT \
     POINT_INFO.SAMPLING_TYPE hybrid_motion \
     POINT_INFO.NUM_POINTS_TO_SAMPLE 256
 ```
-
-## Paper-Aligned Defaults
-
-Current defaults are aligned to the PACE experimental setting:
-- input size `224x224`
-- trajectory points `256`
-- trajectory module injected into last `6` CLIP blocks
-- frozen CLIP backbone
-- cross-entropy classification objective over bidirectional frame-text alignment scores
-
-## Configs
-
-Main configs are under `configs/pace/`:
-- `pace_k400_train.yaml`
-- `pace_ssv2_train.yaml`
-- `pace_ucf101_zeroshot_eval.yaml`
-- `pace_hmdb51_zeroshot_eval.yaml`
